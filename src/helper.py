@@ -3,13 +3,30 @@ from src.parser import Parser
 
 
 class Helper:
-    """Вспомогательный Класс для main хранит в себе функции которые используются в мейне"""
+    """Вспомогательный Класс для main хранит в себе функции которые используются в мейне
+    
+        1)Имеет методы
+            buttons(Функция создаёт  кнопки на экране)
+            check_is_currency_valid(Проверяет валидность введённой валюты )
+            check_is_amount_valid(Проверяет валидность введённой суммы )
+            
+        2)Имеет параметры 
+            bot(telebot)
+    
+    """
 
     def __init__(self, bot):
         self.bot = bot
 
     def buttons(self, prof_data):
-        """Функция создаёт  кнопки на экране"""
+        """Функция создаёт  кнопки на экране
+
+            1)Имеет параметры 
+                prof_data(Профиль пользователя  с его данными)
+
+            2)Возвращаемое значение:
+                markup(Наши кнопки) 
+        """
 
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)  # Buttons on user's messagebox.
         convert = types.KeyboardButton("convert money")
@@ -20,8 +37,14 @@ class Helper:
 
     def check_is_currency_valid(self, prof_data, message):
         """Функция проверяет существует ли такой тип валюты, 
-        если да то принимает его, 
-        если нет то пишем заново"""
+            если да то принимает его, 
+            если нет то пишем заново
+        
+            1)Имеет параметры 
+                prof_data(Профиль пользователя  с его данными)
+                message(информация о сообщении от пользователя)
+        
+        """
 
         prof_data.currency = message.text.upper()
         pars = Parser()
@@ -38,8 +61,13 @@ class Helper:
 
     def check_is_amount_valid(self, prof_data, message):
         """Функция проверяет написали ли мы число, 
-        если да то принимает его, 
-        если нет то пишем заново"""
+            если да то принимает его, 
+            если нет то пишем заново
+        
+            1)Имеет параметры 
+                prof_data(Профиль пользователя  с его данными)
+                message(информация о сообщении от пользователя)
+        """
 
         try:
             prof_data.amount = int(message.text)
@@ -52,7 +80,11 @@ class Helper:
             self.bot.send_message(message.chat.id, f"Enter valid amount type(int)", parse_mode="html")
 
     def keyboard_buton(self):
-        """Создаёт три inline buttons"""
+        """Создаёт три inline buttons
+        
+            1)Возвращаемое значение:
+                markup(inline buttons) 
+        """
 
         markup = types.InlineKeyboardMarkup(row_width=4)  # Buttons under previous message.
         usd = types.InlineKeyboardButton("USD", callback_data="USD")

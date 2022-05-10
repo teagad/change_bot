@@ -12,7 +12,12 @@ bot = telebot.TeleBot(os.environ["BOT_TOKEN"])
 # Функция, обрабатывающая команду /start
 @bot.message_handler(commands=["start"])
 def start(msg):
-    """Начала игры, при вводе команды start выводит письмо приветствия"""
+    """Начала игры, при вводе команды start выводит письмо приветствия
+    
+            Параметры: 
+                msg: информация о сообщении от пользователя
+    
+    """
 
     prof_data = Player_data(msg.from_user.first_name)
     prof_data.standart_value()
@@ -28,7 +33,12 @@ def start(msg):
 
 @bot.message_handler(commands=["help"])
 def help(msg):
-    """Документация к боту при вводе команды help, помощь пользователям"""
+    """Документация к боту при вводе команды help, помощь пользователям
+    
+            Параметры: 
+                msg: информация о сообщении от пользователя
+
+    """
 
     bot.send_message(msg.chat.id, f"Welcome, <i>{msg.from_user.first_name}</i>!\n" +
                      f"My name is <b>{bot.get_me().first_name}</b> and my purpose to show "
@@ -50,7 +60,12 @@ def help(msg):
 
 @bot.message_handler(commands=["exchange"])
 def exchange(msg):
-    """При команде exchange выводит правила пользования и создаёт кнопки"""
+    """При команде exchange выводит правила пользования и создаёт кнопки
+
+            Параметры: 
+                msg: информация о сообщении от пользователя
+    
+    """
 
     prof_data = Player_data(msg.from_user.first_name)
     helper = Helper(bot)
@@ -66,7 +81,12 @@ def exchange(msg):
 
 @bot.message_handler(commands=["cours"])
 def course(msg):
-    """При команде course выводит курс некоторых зарубежных валют в рублях"""
+    """При команде course выводит курс некоторых зарубежных валют в рублях
+    
+        Параметры: 
+            msg: информация о сообщении от пользователя
+    
+    """
 
     file_photo = open("asserts/transfer.jpg", 'rb')
     bot.send_photo(chat_id=msg.from_user.id, photo=file_photo)
@@ -85,7 +105,11 @@ def course(msg):
 # Получение сообщений от юзера
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
-    """Реализация кнопок которые были созданы сверху"""
+    """Реализация кнопок которые были созданы сверху
+    
+        Параметры: 
+            message: информация о сообщении от пользователя
+    """
 
     prof_data = Player_data(message.from_user.first_name)
     helper = Helper(bot)
@@ -119,6 +143,9 @@ def handle_text(message):
 def callback_inline(call):
     """
     Реализация inline buttons которые были созданы при нажати кнопки в верхней функции
+
+        Параметры: 
+            call: Вызов от пользователя
     """
 
     try:
