@@ -92,6 +92,7 @@ def course(msg):
     bot.send_photo(chat_id=msg.from_user.id, photo=file_photo)
     prof_data = Player_data(msg.from_user.first_name)
     pars = Parser()
+    prof_data.currency = "RUB"
     text = ""
     usd_course = pars.parser(prof_data, "USD")
     text += f"1 RUB is {usd_course}\n\n"
@@ -116,7 +117,7 @@ def handle_text(message):
 
     if message.text == "convert money":
         markup = helper.keyboard_buton()
-        bot.send_message(message.chat.id, 'choose the value to convert', parse_mode="html",
+        bot.send_message(message.chat.id, 'choose the currency to convert', parse_mode="html",
                          reply_markup=markup)
 
     elif message.text == f"change amount":
@@ -127,7 +128,7 @@ def handle_text(message):
         prof_data.setinfo()
 
     elif message.text == f"curency {prof_data.currency}":
-        bot.send_message(message.chat.id, f"Enter the value you want to exchange from. "
+        bot.send_message(message.chat.id, f"Enter the currency you want to exchange from. "
                                           f"Now it is: <b>{prof_data.currency}</b>", parse_mode="html")
         prof_data.change_value = 1  # Option 'Change home city' was chosen.
         prof_data.setinfo()
@@ -157,7 +158,7 @@ def callback_inline(call):
                 bot.send_message(call.message.chat.id, f'{prof_data.amount} {prof_data.currency} is ' + text,
                                  parse_mode="html")
     except Exception as e:
-        bot.send_message(call.message.chat.id, 'not valid value to change ',
+        bot.send_message(call.message.chat.id, 'not valid currency to change ',
                          parse_mode="html")
         print(repr(e))
 

@@ -51,7 +51,7 @@ class Helper:
         _ = pars.parser(prof_data)
         if _:
             markup = self.buttons(prof_data)
-            self.bot.send_message(message.chat.id, f"converting value changed to {prof_data.currency}",
+            self.bot.send_message(message.chat.id, f"converting currency changed to {prof_data.currency}",
                                   parse_mode="html",
                                   reply_markup=markup)
             prof_data.change_value = 0
