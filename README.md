@@ -9,7 +9,8 @@ it also prints the one-to-one exchange rate of several foreign currencies in rub
 
 ----
 ```
-you must select one of the items in the menu to continue.  exchange for conversion, cours for displaying the exchange rate to the ruble.
+you must select one of the items in the menu to continue. 
+exchange for conversion, cours for displaying the exchange rate to the ruble. 
 ```
 
 2) *__COURS__*
@@ -25,7 +26,10 @@ here is the chat when choosing courses
 
 ----
 ```
-you must specify the amount of the transferred amount in the change amount by standard it is 1 and indicate the currency from which you are transferring.  Next, click on convert money and choose which currency we are transferring to.example shown on screen
+you must specify the amount of the transferred amount in the change amount 
+by standard it is 1 and indicate the currency from which you are transferring.  
+Next, click on convert money and choose which currency we are transferring to.
+example shown on screen
 ```
 
 INSTALATION
