@@ -39,7 +39,12 @@ def help(msg):
                 msg: информация о сообщении от пользователя
 
     """
-
+    msg_exchange =  "exchange\n"
+    "1)to set the amount and currency of the transfer, "
+    "you need to click on the change amount button and set the transfer amount\n\n "
+    "2) click on the curency and set the currency from which we transfer\n\n "
+    "3) click on convert money and select which currency we transfer to."
+    
     bot.send_message(msg.chat.id, f"Welcome, <i>{msg.from_user.first_name}</i>!\n" +
                      f"My name is <b>{bot.get_me().first_name}</b> and my purpose to show "
                      f"the convertation.", parse_mode="html")
@@ -49,13 +54,8 @@ def help(msg):
                      "1)to start the conversion process click exchange in menu\n\n"
                      "2)to display the exchange rate one to one, click course in menu",
                      parse_mode="html")
-    bot.send_message(msg.chat.id,
-                     "exchange\n"
-                     "1)to set the amount and currency of the transfer, "
-                     "you need to click on the change amount button and set the transfer amount\n\n "
-                     "2) click on the curency and set the currency from which we transfer\n\n "
-                     "3) click on convert money and select which currency we transfer to.",
-                     parse_mode="html")
+    bot.send_message(msg.chat.id,msg_exchange,parse_mode="html")
+
 
 
 @bot.message_handler(commands=["exchange"])
@@ -70,13 +70,12 @@ def exchange(msg):
     prof_data = Player_data(msg.from_user.first_name)
     helper = Helper(bot)
     markup = helper.buttons(prof_data)
-    bot.send_message(msg.chat.id,
-                     "1)to set the amount and currency of the transfer, "
-                     "you need to click on the change amount button and set the transfer amount\n\n "
-                     "2) click on the curency and set the currency from which we transfer\n\n "
-                     "3) click on convert money and select which currency we transfer to.",
-                     parse_mode="html",
-                     reply_markup=markup)
+    msg_text = "1)to set the amount and currency of the transfer, "
+    "you need to click on the change amount button and set the transfer amount\n\n "
+    "2) click on the curency and set the currency from which we transfer\n\n "
+    "3) click on convert money and select which currency we transfer to."
+
+    bot.send_message(msg.chat.id,msg_text,parse_mode="html",reply_markup=markup)
 
 
 @bot.message_handler(commands=["cours"])
